@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-k8s
+  namespace: monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: grafana.k8s.goshare2.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana 
+          servicePort: 3000
